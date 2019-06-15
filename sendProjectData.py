@@ -1,13 +1,10 @@
 import API
 from project_data import ProjectData
 from device import Device
-import besc_host as Host
 import keypair as keyPair
 import datetime
 
 keypair = keyPair.KeyPair("STUD001", "gS5pBilMCBS91z0go3LO6iqLUfZCU0DH")
-
-host_client = Host.BESC_ESS_Host("http://carboapi.besc.online/besc-data")
 
 def sendProjectData():
 
@@ -24,10 +21,9 @@ def sendProjectData():
         )
 
     try:
-        response = API.sendProjectData(keypair, projectData)
+        API.sendProjectData(keypair, projectData)
 
     except Exception as e:
-        raise (response)
         print(e)
 
 if __name__ == "__main__":
