@@ -4,7 +4,7 @@ import json
 import hashlib
 
 def sendProjectData(keyPair, projectData):
-    client = Host.BESC_ESS_Host.createDefault(object)
+    client = Host.BESC_ESS_Host(("http://carboapi.besc.online/besc-data"))
     client.setProjectId(keyPair.projectId)
     client.setEndPoint(Host.endpoints.get("project"))
 
