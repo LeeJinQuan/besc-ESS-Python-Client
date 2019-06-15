@@ -2,7 +2,6 @@ import besc_host as Host
 import requests
 import json
 import hashlib
-import crypto
 
 def sendProjectData(keyPair, projectData):
     client = Host.BESC_ESS_Host.createDefault(object)
