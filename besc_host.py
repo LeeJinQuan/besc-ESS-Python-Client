@@ -3,9 +3,6 @@ class BESC_ESS_Host:
     def __init__(self, host):
         self.host = host
 
-    def createDefault(self):
-        return BESC_ESS_Host("http://carboapi.besc.online/besc-data")
-
     def setEndPoint(self, endpoint):
         self.endpoint = endpoint
 
