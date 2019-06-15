@@ -2,8 +2,6 @@ import validate as validate
 import device as Device
 import dateConvert as dateUtil
 import datetime
-import hashlib
-import json
 
 class ProjectData:
 
