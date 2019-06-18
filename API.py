@@ -8,8 +8,10 @@ def sendProjectData(keyPair, projectData):
     client.setProjectId(keyPair.projectId)
     client.setEndPoint(Host.endpoints.get("project"))
 
-    jsonData = json.dumps(serialize(projectData).get("data"), indent=2)
+    jsonData = json.dumps(serialize(projectData).get("data"), separators=(',', ':'))
     print(jsonData)
+    jsonChecksum = serialize(projectData).get("checksum")
+    print(jsonChecksum)
 
     options = {
         "method": "POST",
@@ -17,33 +19,32 @@ def sendProjectData(keyPair, projectData):
         "headers": {
             "apikey": keyPair.apiKey,
             "Content-Type": "application/json",
-            "checksum": serialize(projectData).get("checksum")
+            "checksum": jsonChecksum
         },
-        "body": serialize(projectData).get("data"),
+        "body": jsonData,
         "json": True
     }
 
     try:
         r = requests.post(options.get("uri"), headers=options.get("headers"), data=jsonData)
-        print(r.json())
-        print(r.text)
+        return r.text
     except:
         print(r.status_code)
 
 #Serialization
 def serialize(projectData):
     dataToSend = {
-        "Project": projectData.project,
-        "DateTime": projectData.datetime,
-        "Devices": projectData.serializeDevices(),
-        "TotalEnergyUsage": projectData.totalEnergyUsage,
-        "AverageRT": projectData.averageRT,
-        "Geolocation": projectData.geolocation
+        'Project': projectData.project,
+        'DateTime': projectData.datetime,
+        'Devices': projectData.serializeDevices(),
+        'TotalEnergyUsage': projectData.totalEnergyUsage,
+        'AverageRT': projectData.averageRT,
+        'Geolocation': projectData.geolocation
     }
 
     #NOT SURE
-    hashdata = hashlib.sha1(json.dumps(dataToSend).encode()).hexdigest()
-    print(hashdata)
+    hashdata = hashlib.sha1(json.dumps(dataToSend, separators=(',', ':')).encode('UTF-8')).hexdigest()
+
     serialized = {
         "data": dataToSend,
         "checksum": hashdata
