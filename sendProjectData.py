@@ -24,16 +24,11 @@ def sendProjectData():
         result = instance.read()
         if result.is_valid():
 
-            tempTop = (result.temperature * 10) + 1
-            tempBottom = (result.temperature * 10) - 1
-            humiTop = (result.humidity * 10) + 1
-            humiBottom = (result.humidity * 10) - 1
-            
-            temp = float(random.randrange(tempTop, tempBottom))/10
-            humi = float(random.randrange(humiBottom, humiTop))/10
-            
+            temp = random.uniform(result.temperature - 0.1, result.temperature + 0.1)
+            humi = random.uniform(result.humidity - 0.1, result.humidity + 0.1)
+
             total = temp + humi
-            
+
             projectData = ProjectData(
                 "Testing",
                 datetime.datetime.now(),
