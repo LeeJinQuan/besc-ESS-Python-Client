@@ -24,11 +24,11 @@ def sendProjectData():
     while (True):
         result = instance.read()
         if result.is_valid():
-        
-            temp = float(decimal.Decimal(random.randrange(result.temperature - 1.01, result.temperature + 1.01)))
-            humi = float(decimal.Decimal(random.randrange(result.humidity - 1.01, result.humidity + 1.01)))
+
+            temp = float(decimal.Decimal(random.randrange(result.temperature - 1.1, result.temperature + 1.1)))
+            humi = float(decimal.Decimal(random.randrange(result.humidity - 1.1, result.humidity + 1.1)))
             total = temp + humi
-        
+
                 projectData = ProjectData(
                     "Testing",
                     datetime.datetime.now(),
@@ -36,8 +36,8 @@ def sendProjectData():
                         Device("AABC1", temp),
                         Device("AABC2", humi)
                     ],
-                    float(decimal.Decimal(random.randrange(total - 1.01, total + 1.01))),
-                    (result.temperature + result.humidity) * 0.28434517,
+                    float(decimal.Decimal(random.randrange(total - 1.1, total + 1.1))),
+                    round(((result.temperature + result.humidity) * 0.28434517), 1),
                     "Selangor"
                 )
 
