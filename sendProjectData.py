@@ -6,7 +6,6 @@ import RPi.GPIO as GPIO
 import dht11
 import time
 import datetime
-import decimal
 import random
 
 # initialize GPIO
@@ -25,10 +24,16 @@ def sendProjectData():
         result = instance.read()
         if result.is_valid():
 
-            temp = float(decimal.Decimal(random.randrange(result.temperature - 1.1, result.temperature + 1.1)))
-            humi = float(decimal.Decimal(random.randrange(result.humidity - 1.1, result.humidity + 1.1)))
+            tempTop = (result.temperature * 10) + 1
+            tempBottom = (result.temperature * 10) - 1
+            humiTop = (result.humidity * 10) + 1
+            humiBottom = (result.humidity * 10) - 1
+            
+            temp = float(random.randrange(tempTop, tempBottom))/10
+            humi = float(random.randrange(humiBottom, humiTop))/10
+            
             total = temp + humi
-
+            
             projectData = ProjectData(
                 "Testing",
                 datetime.datetime.now(),
@@ -36,8 +41,8 @@ def sendProjectData():
                     Device("AABC1", temp),
                     Device("AABC2", humi)
                 ],
-                float(decimal.Decimal(random.randrange(total - 1.1, total + 1.1))),
-                round(((result.temperature + result.humidity) * 0.28434517), 1),
+                total,
+                round((total * 0.28434517), 1),
                 "Selangor"
             )
 
