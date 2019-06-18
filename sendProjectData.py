@@ -36,7 +36,7 @@ def sendProjectData():
                     Device("AABC1", round(temp, 1)),
                     Device("AABC2", round(humi, 1))
                 ],
-                roundd(total, 1),
+                round(total, 1),
                 round((total * 0.28434517), 1),
                 "Selangor"
             )
