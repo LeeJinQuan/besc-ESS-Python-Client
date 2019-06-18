@@ -55,11 +55,11 @@ class ProjectData:
                 if (isinstance(device, Device.Device) != True):
                     raise Exception("Item of Devices must be instance of Device")
 
-        validate.number(self.averageRT, "AverageRT")
-        validate.number(self.totalEnergyUsage, "TotalEnergyUsage")
+        validate.checkfloat(self.averageRT, "AverageRT")
+        validate.checkfloat(self.totalEnergyUsage, "TotalEnergyUsage")
         validate.string(self.geolocation, "Geolocation")
         validate.string(self.project, "Project")
-        #validate.datetimeString(self.datetime, "DateTime")
+        validate.datetimeString(self.datetime, "DateTime")
 
     #Device Serialization
     def serializeDevices(self):
