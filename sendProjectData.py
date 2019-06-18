@@ -24,8 +24,8 @@ def sendProjectData():
         result = instance.read()
         if result.is_valid():
 
-            temp = random.uniform(result.temperature - 0.1, result.temperature + 0.1)
-            humi = random.uniform(result.humidity - 0.1, result.humidity + 0.1)
+            temp = random.uniform(result.temperature + 0.1, result.temperature + 0.9)
+            humi = random.uniform(result.humidity + 0.1, result.humidity + 0.9)
 
             total = temp + humi
 
@@ -33,10 +33,10 @@ def sendProjectData():
                 "Testing",
                 datetime.datetime.now(),
                 [
-                    Device("AABC1", temp),
-                    Device("AABC2", humi)
+                    Device("AABC1", round(temp, 1)),
+                    Device("AABC2", round(humi, 1))
                 ],
-                total,
+                roundd(total, 1),
                 round((total * 0.28434517), 1),
                 "Selangor"
             )
