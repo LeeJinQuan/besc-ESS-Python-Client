@@ -29,27 +29,27 @@ def sendProjectData():
             humi = float(decimal.Decimal(random.randrange(result.humidity - 1.1, result.humidity + 1.1)))
             total = temp + humi
 
-                projectData = ProjectData(
-                    "Testing",
-                    datetime.datetime.now(),
-                    [
-                        Device("AABC1", temp),
-                        Device("AABC2", humi)
-                    ],
-                    float(decimal.Decimal(random.randrange(total - 1.1, total + 1.1))),
-                    round(((result.temperature + result.humidity) * 0.28434517), 1),
-                    "Selangor"
-                )
+            projectData = ProjectData(
+                "Testing",
+                datetime.datetime.now(),
+                [
+                    Device("AABC1", temp),
+                    Device("AABC2", humi)
+                ],
+                float(decimal.Decimal(random.randrange(total - 1.1, total + 1.1))),
+                round(((result.temperature + result.humidity) * 0.28434517), 1),
+                "Selangor"
+            )
 
-            else:
-                pass
+        else:
+            pass
 
-            try:
-                print(API.sendProjectData(keypair, projectData))
-                time.sleep(10)
+        try:
+            print(API.sendProjectData(keypair, projectData))
+            time.sleep(10)
 
-            except Exception as e:
-                print(e)
+        except Exception as e:
+            print(e)
 
 if __name__ == "__main__":
     sendProjectData()
