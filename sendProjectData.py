@@ -16,7 +16,7 @@ GPIO.cleanup()
 # read data using pin 17
 instance = dht11.DHT11(pin=17)
 
-keypair = keyPair.KeyPair("STUD001", "gS5pBilMCBS91z0go3LO6iqLUfZCU0DH")
+keypair = keyPair.KeyPair("", "")
 
 
 def sendProjectData():
