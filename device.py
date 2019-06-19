@@ -1,4 +1,5 @@
 import validate
+from collections import OrderedDict
 
 class Device:
 
@@ -11,10 +12,10 @@ class Device:
 
     #Serialization
     def serialize(self):
-        return {
-            "DeviceId": self.deviceID,
-            "EnergyUsage": self.energyUsage
-        }
+        return OrderedDict([
+            ("DeviceId", self.deviceID),
+            ("EnergyUsage", self.energyUsage)]
+        )
 
     #Validating
     def validate(self):
