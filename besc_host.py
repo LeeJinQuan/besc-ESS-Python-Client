@@ -1,3 +1,5 @@
+from collections import OrderedDict
+
 class BESC_ESS_Host:
 
     def __init__(self, host):
@@ -13,9 +15,9 @@ class BESC_ESS_Host:
         endpoint = str(self.endpoint).replace(":project_id", self.project_id)
         return self.host + basePath + endpoint
 
-endpoints = {
-    "debug": "/debugs/:project_id",
-    "project": "/project/:project_id"
-}
+endpoints = OrderedDict([
+    ("debug", "/debugs/:project_id"),
+    ("project", "/project/:project_id")
+])
 
 basePath = "/energysaving"
