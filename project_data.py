@@ -2,6 +2,7 @@ import validate as validate
 import device as Device
 import dateConvert as dateUtil
 import datetime
+from collections import OrderedDict
 
 class ProjectData:
 
@@ -71,9 +72,10 @@ class ProjectData:
         return serialized_Devices
 
 
-    options = {
-        "limit": 5,
-        "offset": 0,
-        "start_date": None,
-        "end_date": None
-    }
+    options = OrderedDict([
+        ("limit", 5),
+        ("offset", 0),
+        ("start_date", None),
+        ("end_date", None)
+    ])
+
